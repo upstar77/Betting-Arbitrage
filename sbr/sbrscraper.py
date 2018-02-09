@@ -59,7 +59,7 @@ def parse_and_write_data(soup, date, time):
     if True:
         df = DataFrame(
                 columns=(
-     'player','Pinnacle','Will Hill','bet365','Bookmaker','BetOnline','The Greek Sportsbook','JustBet','SportsInteraction','WagerWeb','FiveDimes'))
+     'player','betfairBack','Pinnacle','Will Hill','bet365','Bookmaker','BetOnline','The Greek Sportsbook','JustBet','SportsInteraction','WagerWeb','FiveDimes'))
 
     counter = 0
     number_of_games = len(soup.find_all('div', attrs = {'class':'el-div eventLine-rotation'})) #correct

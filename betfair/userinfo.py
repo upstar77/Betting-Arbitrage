@@ -1,3 +1,3 @@
-username = 'YOUR_USERNAME_HERE'
-password = 'YOUR_PASSWORD_HERE'
-appKey = 'YOUR_APPKEY_HERE'
+username = 'mtearb'
+password = '02112011demir'
+appKey = 'dDWnkApEgc0NRGGo'

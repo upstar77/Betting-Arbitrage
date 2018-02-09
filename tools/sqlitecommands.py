@@ -8,7 +8,7 @@ conn = sqlite3.connect('master.db')
 c = conn.cursor()
 
 def create_table():
-	c.execute('CREATE TABLE IF NOT EXISTS tennis(player TEXT, Pinnacle REAL, WillHill REAL, betThreeSixFive REAL, Bookmaker REAL, BetOnline REAL, TheGreekSportsbook REAL, JustBet REAL, SportsInteraction REAL, WagerWeb REAL, FiveDimes REAL)')
+	c.execute('CREATE TABLE IF NOT EXISTS tennis(player TEXT, betfairBack TEXT, Pinnacle REAL, WillHill REAL, betThreeSixFive REAL, Bookmaker REAL, BetOnline REAL, TheGreekSportsbook REAL, JustBet REAL, SportsInteraction REAL, WagerWeb REAL, FiveDimes REAL)')
 
 
 

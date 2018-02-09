@@ -1,9 +1,9 @@
 from tools import calculator as calc
 from tools import sqlitecommands as sq
 from sbr import sbrscraper as sbr
-from betfair import bfairapi as b
+from betfair import bfairapi as bt
 from betfair import userinfo
-from betfair import bfairtools as btools
+#from betfair import bfairtools as btools
 from pandas import DataFrame
 from pinnacle import pinnaclexml as pin
 from datetime import date
@@ -56,7 +56,7 @@ def writePinnacle():
 
 # Update betfair odds
 def writeBetfair():
-  market_catalogue = b.getMarketCatalogue('2')  
+  market_catalogue = bt.getMarketCatalogue('2')  
   playerOne = []
   playerTwo = []
   backOddsOne = []
@@ -93,13 +93,14 @@ def writeBetfair():
 # Iterate through database (dictionary) looking for arbs
 def lookForArbs(competitors):
   for playerOne in competitors:
-    try:
-      if calc.BackBack(100,max(sq.read_from_db(playerOne[i])[0][1:]), max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))[2]>0:
-        print "We will get " + str(calc.BackBack(100,max(sq.read_from_db(playerOne[i])[0][1:]), max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))[2]) + "% ROI if we bet " + str(calc.BackBack(100,max(sq.read_from_db(playerOne[i])[0][1:]), max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))[0]) + "% on " + str(playerOne[i]) + " at " + str(max(sq.read_from_db(playerOne[i])[0][1:])) + " and " + str(calc.BackBack(100,max(sq.read_from_db(playerOne[i])[0][1:]), max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))[1]) + "% on " + str(competitors[playerOne[i]]) + " at " + str( max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))
-      else:
+    for i in range(len(playerOne)-1):
+      try:
+        if calc.BackBack(100,max(sq.read_from_db(playerOne[i])[0][1:]), max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))[2]>0:
+          print "We will get " + str(calc.BackBack(100,max(sq.read_from_db(playerOne[i])[0][1:]), max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))[2]) + "% ROI if we bet " + str(calc.BackBack(100,max(sq.read_from_db(playerOne[i])[0][1:]), max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))[0]) + "% on " + str(playerOne[i]) + " at " + str(max(sq.read_from_db(playerOne[i])[0][1:])) + " and " + str(calc.BackBack(100,max(sq.read_from_db(playerOne[i])[0][1:]), max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))[1]) + "% on " + str(competitors[playerOne[i]]) + " at " + str( max(sq.read_from_db(competitors[playerOne[i]])[0][1:]))
+        else:
+          pass
+      except IndexError:
         pass
-    except IndexError:
-      pass
   
 
 
